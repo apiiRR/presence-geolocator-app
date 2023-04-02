@@ -2,6 +2,10 @@ import 'package:get/get.dart';
 
 import '../modules/add_pegawai/bindings/add_pegawai_binding.dart';
 import '../modules/add_pegawai/views/add_pegawai_view.dart';
+import '../modules/all_presensi/bindings/all_presensi_binding.dart';
+import '../modules/all_presensi/views/all_presensi_view.dart';
+import '../modules/detail_presensi/bindings/detail_presensi_binding.dart';
+import '../modules/detail_presensi/views/detail_presensi_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -26,10 +30,10 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
+        name: _Paths.HOME,
+        page: () => const HomeView(),
+        binding: HomeBinding(),
+        transition: Transition.fadeIn),
     GetPage(
       name: _Paths.ADD_PEGAWAI,
       page: () => const AddPegawaiView(),
@@ -51,10 +55,10 @@ class AppPages {
       binding: ForgotPasswordBinding(),
     ),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
-    ),
+        name: _Paths.PROFILE,
+        page: () => const ProfileView(),
+        binding: ProfileBinding(),
+        transition: Transition.fadeIn),
     GetPage(
       name: _Paths.UPDATE_PROFILE,
       page: () => UpdateProfileView(),
@@ -64,6 +68,16 @@ class AppPages {
       name: _Paths.UPDATE_PASSWORD,
       page: () => const UpdatePasswordView(),
       binding: UpdatePasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PRESENSI,
+      page: () => DetailPresensiView(),
+      binding: DetailPresensiBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALL_PRESENSI,
+      page: () => const AllPresensiView(),
+      binding: AllPresensiBinding(),
     ),
   ];
 }

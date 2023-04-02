@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'app/controllers/page_index_controller.dart';
 import 'firebase_options.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  final pageController = Get.put(PageIndexController(), permanent: true);
 
   runApp(
     StreamBuilder<User?>(

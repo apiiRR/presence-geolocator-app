@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -56,10 +58,51 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                user["profile"] != null && user["profile"] != ""
-                    ? const Text("foto profil")
-                    : const Text("No choosen.."),
-                TextButton(onPressed: () {}, child: const Text("choose"))
+                GetBuilder<UpdateProfileController>(builder: (controller) {
+                  if (controller.image != null) {
+                    return ClipOval(
+                      child: SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: Image.file(
+                          File(controller.image!.path),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  } else {
+                    if (user["profile"] != null) {
+                      return Column(
+                        children: [
+                          ClipOval(
+                            child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.network(
+                                user["profile"],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                controller.deleteProfile(user["uid"]);
+                              },
+                              child: const Text("delete")),
+                        ],
+                      );
+                    }
+                    return const Text("no image");
+                  }
+                }),
+                // user["profile"] != null && user["profile"] != ""
+                //     ? const Text("foto profil")
+                //     : const Text("No choosen.."),
+                TextButton(
+                    onPressed: () {
+                      controller.pickImage();
+                    },
+                    child: const Text("choose"))
               ],
             ),
             const SizedBox(

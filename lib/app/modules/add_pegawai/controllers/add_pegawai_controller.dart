@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class AddPegawaiController extends GetxController {
   TextEditingController nameController = TextEditingController();
+  TextEditingController jobController = TextEditingController();
   TextEditingController nipController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordAdminController = TextEditingController();
@@ -32,6 +33,7 @@ class AddPegawaiController extends GetxController {
             "nip": nipController.text,
             "nama": nameController.text,
             "email": emailController.text,
+            "job": jobController.text,
             "uid": uid,
             "role": "pegawai",
             "createdAt": DateTime.now().toIso8601String()
@@ -71,6 +73,7 @@ class AddPegawaiController extends GetxController {
 
   void addPegawai() async {
     if (nameController.text.isNotEmpty &&
+        jobController.text.isNotEmpty &&
         nipController.text.isNotEmpty &&
         emailController.text.isNotEmpty) {
       Get.defaultDialog(
@@ -99,7 +102,7 @@ class AddPegawaiController extends GetxController {
                 child: const Text("ADD PEGAWAI"))
           ]);
     } else {
-      Get.snackbar("Terjadi Kesalahan", "NIP, Nama dan Email harus diisi");
+      Get.snackbar("Terjadi Kesalahan", "NIP, Nama, Job dan Email harus diisi");
     }
   }
 }
